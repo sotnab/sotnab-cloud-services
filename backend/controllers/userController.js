@@ -1,11 +1,7 @@
 const jwt = require('jsonwebtoken')
 
 const User = require('../models/User')
-
-const requireUncached = (module) => {
-    delete require.cache[require.resolve(module)]
-    return require(module)
-}
+const Setting = require('../models/Setting')
 
 const createToken = (_id) => {
     return jwt.sign({ _id }, process.env.SECRET, { expiresIn: '3d' })
@@ -23,7 +19,7 @@ const login = async (req, res) => {
 
         const token = createToken(user._id)
 
-        res.status(200).json({ email, token })
+        res.status(200).json({ email, token, admin: user.admin })
 
     } catch (error) {
         res.status(401).json({ error: error.message })
@@ -33,9 +29,9 @@ const login = async (req, res) => {
 const signup = async (req, res) => {
     const { email, password, repeatedPassword } = req.body
 
-    const { allowSignup } = requireUncached('../config.json')
+    const allowSignup = await Setting.findOne({ name: 'allowSignup' })
 
-    if (!allowSignup) {
+    if (!allowSignup.booleanValue) {
         return res.status(400).json({ error: 'Actually we do not accept new users. Try again later.' })
     }
 
@@ -52,7 +48,7 @@ const signup = async (req, res) => {
 
         const token = createToken(user._id)
 
-        res.status(200).json({ email, token })
+        res.status(200).json({ email, token, admin: user.admin })
 
 
     } catch (error) {

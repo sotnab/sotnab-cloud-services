@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { FaRegSadTear } from 'react-icons/fa'
 
-import useFilesContext from '../hooks/useFilesContext'
 import useAuthContext from '../hooks/useAuthContext'
 import useLogout from '../hooks/useLogout'
 
@@ -10,10 +9,10 @@ import FileSkeleton from '../components/FileSkeleton'
 import FileUploadForm from '../components/FileUploadForm'
 
 const Drive = () => {
+    const [files, setFiles] = useState([])
     const [reload, setReload] = useState(0)
     const [loading, setLoading] = useState(false)
 
-    const { files, dispatch } = useFilesContext()
     const { user } = useAuthContext()
     const { logout } = useLogout()
 
@@ -32,7 +31,7 @@ const Drive = () => {
 
             const json = await response.json()
 
-            dispatch({ type: 'SET_FILES', payload: json.files })
+            setFiles(json.files)
             setLoading(false)
         }
 

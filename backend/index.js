@@ -5,6 +5,7 @@ const path = require('path')
 
 const userRoutes = require('./routes/userRoutes')
 const fileRoutes = require('./routes/fileRoutes')
+const settingRoutes = require('./routes/settingRoutes')
 
 dotenv.config()
 
@@ -15,6 +16,7 @@ app.use(express.static('public'))
 
 app.use('/api/user/', userRoutes)
 app.use('/api/file/', fileRoutes)
+app.use('/api/setting/', settingRoutes)
 
 app.use(express.static('public/build'))
 

@@ -9,6 +9,8 @@ const storage = multer.diskStorage({
         const splittedName = file.originalname.split('.')
         const extension = splittedName.slice(-1)[0]
 
+        file.extension = extension
+
         cb(null, Date.now() + '.' + extension)
     }
 })

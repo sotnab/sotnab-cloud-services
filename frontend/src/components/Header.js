@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaUserAlt } from 'react-icons/fa'
-import { FiHardDrive, FiCloud } from 'react-icons/fi'
+import { FiCloud } from 'react-icons/fi'
 import useAuthContext from '../hooks/useAuthContext'
 import useLogout from '../hooks/useLogout'
 
@@ -39,6 +39,8 @@ const Header = () => {
                             <strong className="header__email">{user.email}</strong>
                             <button className="header__btn" onClick={handleLogout}>Log out</button>
                         </div>
+
+                        {user.admin && <Link to='/admin' className='header__link'>Admin Panel</Link>}
                     </div>
                 )}
             </div>

@@ -9,13 +9,13 @@ const useMediaHostingUpload = () => {
     const upload = async (title, file) => {
         const formData = new FormData()
 
-        formData.append('file', file)
         formData.append('title', title)
+        formData.append('file', file)
 
         setError(null)
         setIsLoading(true)
 
-        const response = fetch('/api/file-hosting', {
+        const response = await fetch('/api/file/media', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${user.token}`

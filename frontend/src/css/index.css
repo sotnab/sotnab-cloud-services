@@ -9,6 +9,7 @@
    --error: coral;
    --delete: rgb(177, 0, 0);
 
+   --light-shadow: 2px 2px 10px -2px rgba(0, 0, 0, 0.15);
    --shadow: 4px 4px 15px -2px rgba(0, 0, 0, 0.1);
    --strong-shadow: 4px 4px 15px -5px rgba(0, 0, 0, 0.4);
 }
@@ -171,7 +172,6 @@ body {
 .form__control--oln {
    max-width: 300px;
    font-size: 1rem;
-   border: 1px solid var(--grayish-green);
 }
 
 .form__btn {
@@ -483,4 +483,39 @@ body {
    color: var(--grayish-green);
    font-weight: bold;
    text-align: center;
+}
+
+.admin__title {
+   border-bottom: 1px solid var(--grayish-green);
+}
+
+.admin__settings {
+   margin-top: 20px;
+}
+
+.admin__setting {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   padding: 5px;
+   border-bottom: 1px solid var(--clay);
+}
+
+.admin__label {
+   width: 100%;
+   color: var(--green);
+   font-size: 1.2rem;   
+   cursor: pointer;
+}
+
+.admin__checkbox {
+   width: 20px;
+   height: 20px;
+   cursor: pointer;
+}
+
+.media__player {
+   box-shadow: var(--shadow);
+   border: none;
 }

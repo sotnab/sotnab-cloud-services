@@ -7,6 +7,8 @@ const { getFiles, uploadFile, deleteFile } = require('../controllers/fileControl
 
 const router = Router()
 
+router.use('/media/', mediaFileRoutes)
+
 router.use(requireAuth)
 
 router.get('/', getFiles)
@@ -14,7 +16,5 @@ router.get('/', getFiles)
 router.post('/', upload.any(), uploadFile)
 
 router.delete('/', deleteFile)
-
-router.use('/media/', mediaFileRoutes)
 
 module.exports = router
